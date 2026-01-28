@@ -15,10 +15,10 @@ function Carusel({ data, uniqueName }) {
 
   return (
     <div className="px-10 py-3 relative">
-      <button className={`${styles.prev} swiper-button-prev custom-prev-${uniqueName}`}>
+      <button className={`caruselbtn swiper-button-prev custom-prev-${uniqueName}`}>
         <img src="arrowl.svg" className={styles.prev} />
       </button>
-      <button className={`${styles.next}  swiper-button-next custom-next-${uniqueName}`}>
+      <button className={`caruselbtn  swiper-button-next custom-next-${uniqueName}`}>
         <img src="arrowr.svg" className={styles.next} />
       </button>
 
