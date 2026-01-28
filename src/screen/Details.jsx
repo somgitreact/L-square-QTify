@@ -54,7 +54,7 @@ useEffect(() => {
 // },[])
 //console.log("location", songs, songlist);
     return (
-       <div className=' bg-[#121212] flex-1 px-10 pt-5'>
+       <div className='flex-1 px-10 pt-5'>
         
       <div className='flex gap-3 '>
         <div className=''>

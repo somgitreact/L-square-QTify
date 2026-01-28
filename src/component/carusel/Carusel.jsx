@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import styles from './Carusel.module.css'
 
 import Card from "../Card";
+import { CircularProgress } from "@mui/material";
 
 function Carusel({ data, uniqueName }) {
   const navigate = useNavigate();
@@ -31,15 +32,18 @@ function Carusel({ data, uniqueName }) {
           nextEl: `.custom-next-${uniqueName}`,
         }}
         breakpoints={{
-          640: { slidesPerView: 2, spaceBetween: 20 },
-          768: { slidesPerView: 4, spaceBetween: 40 },
-          1024: { slidesPerView: 5, spaceBetween: 40 },
-          1400: { slidesPerView: 8, spaceBetween: 40 },
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 4 },
+          1124: { slidesPerView: 5 },
+          1600: { slidesPerView: 7 },
         }}
         modules={[Navigation, Pagination]}
         className="mySwiper"
       >
-        {data?.map((item) => (
+        
+        { data.length === 0 ?  <CircularProgress />  
+        :              
+        data?.map((item) => (
           <SwiperSlide key={item.id}>
             <Card
               carddata={item}

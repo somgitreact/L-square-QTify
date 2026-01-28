@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../component/Header'
+import Header from '../component/Navbar'
 import Search from '../component/Search'
 import Card from '../component/Card'
 import Faq from '../component/Faq'
 import Section from '../component/Section'
 import { fetchdata } from '../api/allapiservice'
+import Hero from '../component/Hero'
 
 const Home = () => {
   const [topdata, setTopdata]= useState([])
@@ -68,9 +69,9 @@ const songhandler=(cat)=>{
 // }
 
   return (
-    <div className=' bg-[#121212] flex-1'>
+    <div className='flex-1'>
 
-        <div className=' p-12 flex justify-center'><img src='banner.png' /></div>
+       <Hero />
         <Section data={topdata} name="Top Albums"   uniqueName='top'/>
         <Section data={topdata} name="New Albums"  uniqueName='new'/>
         <Section data={songfilter} name="Song" menu={gendata} songhandler={songhandler} uniqueName='song'/>

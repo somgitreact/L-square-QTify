@@ -6,7 +6,7 @@ import Home from './screen/Home'
 import { BrowserRouter } from 'react-router'
 import Navigation from './navigation/Navigation'
 import Details from './screen/Details'
-import Header from './component/Header'
+import Navbar from './component/Navbar'
 import Search from './component/Search'
 
 
@@ -16,11 +16,12 @@ function App() {
   return (
     <BrowserRouter>
 
-    <div className=' flex flex-col h-[100vh] '>
+    <div className=' flex flex-col'  style={{backgroundColor: 'var(--color-black)'}}>
 
-        <Header>
+        {/* <Header>
             <Search />
-        </Header>
+        </Header> */}
+        <Navbar />
 
 <Navigation />
    
