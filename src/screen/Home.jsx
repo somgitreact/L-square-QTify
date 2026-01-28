@@ -9,6 +9,7 @@ import Hero from '../component/Hero'
 
 const Home = () => {
   const [topdata, setTopdata]= useState([])
+   const [newdata, setNewdata]= useState([])
   const [songdata, setSongdata]= useState([])
    const [gendata, setGendata]= useState([])
    const [songfilter, setSongfilter]= useState(songdata)
@@ -35,8 +36,9 @@ const Home = () => {
   useEffect(() => {
   const fetchAllData = async () => {
     try {
-      const [topRes, songRes, genres] = await Promise.allSettled([
+      const [topRes, newRes, songRes, genres] = await Promise.allSettled([
         fetchdata("albums/top"),
+        fetchdata("albums/new"),
         fetchdata("songs"),
         fetchdata("genres"),
       ]);
@@ -44,6 +46,7 @@ const Home = () => {
     //  console.log("++++++", genres.value.data);
 
      setTopdata(topRes.value);
+     setNewdata(newRes.value)
      setSongdata(songRes.value);
       setGendata(genres.value.data);
       setSongfilter(songRes.value)
@@ -73,7 +76,7 @@ const songhandler=(cat)=>{
 
        <Hero />
         <Section data={topdata} name="Top Albums"   uniqueName='top'/>
-        <Section data={topdata} name="New Albums"  uniqueName='new'/>
+        <Section data={newdata} name="New Albums"  uniqueName='new'/>
         <Section data={songfilter} name="Song" menu={gendata} songhandler={songhandler} uniqueName='song'/>
 
         <div className=' flex flex-col items-center '>

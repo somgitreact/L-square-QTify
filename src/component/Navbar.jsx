@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className='bg-green-500 px-3.5 py-2.5 justify-between items-center flex '>
       <Link to='/' ><img src='logoq.png' alt="qtfy" /></Link> 
-      <Search />
+      <Search placeholder="Search a song of your choice"/>
 {/* {children} */}
        <Feedbackbtn text='Give Feedback' />
     </div>
