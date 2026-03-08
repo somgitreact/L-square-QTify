@@ -105,12 +105,12 @@ body {
   position: relative;
 }
 .cross {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    padding: 2px 9px;
-    min-width: auto;
-    border-radius: 50%;
+    position: absolute !important;
+    top: -8px!important;
+    right: -8px!important;
+    padding: 2px 9px!important;
+    min-width: auto!important;
+    border-radius: 50%!important;
 }
 .formfeed > div {
   margin-bottom: 8px;
