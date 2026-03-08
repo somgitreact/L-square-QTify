@@ -47,7 +47,7 @@ function Carusel({ data, uniqueName }) {
           <SwiperSlide key={item.id}>
             <Card
               carddata={item}
-              onClick={() => navigate("/details", { state: { details: item } })}
+              onClick={uniqueName ==='song' ? null : () => navigate("/details", { state: { details: item } })}
             />
           </SwiperSlide>
         ))}

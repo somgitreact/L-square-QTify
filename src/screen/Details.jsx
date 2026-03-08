@@ -2,6 +2,7 @@
 import { Button } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from "react-router-dom";
+import Player from '../component/Player';
 
 
 
@@ -10,7 +11,9 @@ const Details = () => {
   const nxtRef = useRef()
 const { state } = useLocation();
 const { description, follows, image , title, songs} = state.details
+ 
 const [songlist, setSonglist] = useState([])
+const[info, setInfo] = useState('')
 const [count, setCount] = useState({start:0, end:5})
 const pagination = (direction)=>{
   setCount((prev)=>{
@@ -18,6 +21,8 @@ if(direction==='nxt') return {start:prev.end, end:prev.end + 5}
 if(direction==='prev') return { start: Math.max(prev.start - 5, 0), end: Math.max(prev.end - 5, 5),}
 return prev
   })
+
+  
   // if(direction==='nxt'){
   //   setCount({start:count.end, end:count.end + 5})
   // }  else if(direction==='prev') {
@@ -53,6 +58,7 @@ useEffect(() => {
 // funclist()
 // },[])
 //console.log("location", songs, songlist);
+
     return (
        <div className='flex-1 px-10 pt-5'>
         
@@ -72,18 +78,20 @@ useEffect(() => {
 
 
 <div>
-  <div className='pagination'><Button onClick={()=>pagination("prev")} >prev</Button> 
-        <Button onClick={()=>pagination("nxt")} ref={nxtRef} >next</Button> </div>
+  <div className='pagination'><Button onClick={()=>pagination("prev")} >&lt;&lt;</Button> 
+  {  Array.from({ length: Math.floor(songs.length / 5) }).map((_,index)=><Button onClick={()=> setCount({start:index*5, end:(index*5 + 5)}) } >{index}</Button>)}
+        <Button onClick={()=>pagination("nxt")} ref={nxtRef} >&gt;&gt;</Button> </div>
   <div className=' flex justify-between text-white items-center h-[60px] border-b border-cyan-50 '>
      <span className='flex w-[40%] items-center gap-2'>Title</span>
     <span>Artist</span>
     <span>Duration</span>
   </div>
 
+
 {
   songlist?.map(item=>{
     return(
-    <div key={item.id} className=' flex justify-between text-white items-center h-[60px] border-b border-cyan-50 '>
+    <div onClick={()=>setInfo({img:item.image, nam:item.title,album: ''})} key={item.id} className=' flex justify-between text-white items-center h-[60px] border-b border-cyan-50 '>
     <span className='flex w-[40%] items-center gap-2'><img src={item.image} className=' w-7'/> {item.title}</span>
     <span>{item.artists[0]}</span>
     <span>{item.durationInMs}</span>
@@ -94,6 +102,7 @@ useEffect(() => {
   
 </div>
 
+<Player info={info}  />
    </div> 
     )
 }

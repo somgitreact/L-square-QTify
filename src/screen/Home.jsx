@@ -4,69 +4,26 @@ import Search from '../component/Search'
 import Card from '../component/Card'
 import Faq from '../component/Faq'
 import Section from '../component/Section'
-import { fetchdata } from '../api/allapiservice'
+
 import Hero from '../component/Hero'
 
-const Home = () => {
-  const [topdata, setTopdata]= useState([])
-   const [newdata, setNewdata]= useState([])
-  const [songdata, setSongdata]= useState([])
-   const [gendata, setGendata]= useState([])
-   const [songfilter, setSongfilter]= useState(songdata)
+const Home = ({data}) => {
+ const {topdata, newdata, songdata, gendata} = data;
+  const [songfilter, setSongfilter]= useState([])
 
-  //       const fetchDataTop = async ()=>{
-  //       const responcedata = await fetchdata('albums/top')
-  //       console.log(responcedata);        
-  //            setTopdata(responcedata)
-  //     }
-
-  //             const fetchDataSong= async ()=>{
-  //       const responcedata = await fetchdata('songs')
-  //       console.log(responcedata);        
-  //            setSongdata(responcedata)
-  //     }
-
-  // useEffect( function(){
-  //     fetchDataTop()
-  //     fetchDataSong()
-  // },[])
-
-
-
-  useEffect(() => {
-  const fetchAllData = async () => {
-    try {
-      const [topRes, newRes, songRes, genres] = await Promise.allSettled([
-        fetchdata("albums/top"),
-        fetchdata("albums/new"),
-        fetchdata("songs"),
-        fetchdata("genres"),
-      ]);
-
-    //  console.log("++++++", genres.value.data);
-
-     setTopdata(topRes.value);
-     setNewdata(newRes.value)
-     setSongdata(songRes.value);
-      setGendata(genres.value.data);
-      setSongfilter(songRes.value)
-    } catch (error) {
-      console.error("API error:", error);
-    }
-  };
-
-  fetchAllData();
-}, []);
-
-const songhandler=(cat)=>{
+  const songhandler=(cat)=>{
  // console.log(cat, songdata);
   const newdata = songdata.filter((item)=> item.genre.key == cat )
  // console.log("newdata", newdata);
   setSongfilter(newdata)
-  
-  
+   
 }
-
+useEffect(()=>{
+  const onlysongsdata = async()=>{
+    await setSongfilter(songdata)
+  }
+onlysongsdata()
+},[songdata])
 // const songFilter = ()=>{
      
 // }
